@@ -1,6 +1,6 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/Users.js"; 
-
+import { sendTokens } from "../utils/sendJwt.js";
 
 const registerUser = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
@@ -19,11 +19,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
      newUser.refershToken = refreshToken;
      await newUser.save();
-     res.cookie('accessToken', accessToken, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 3600000,
-    }).json({ message: 'User Created', status: 200 });
+     sendTokens(res,accessToken);
     
 });
 
@@ -50,11 +46,8 @@ const loginUser = asyncHandler(async(req,res)=>{
 
     user.refershToken = refreshToken;
     await user.save();
-    res.cookie('accessToken', accessToken, {
-       httpOnly: true,
-       secure: true,
-       maxAge: 3600000,
-   }).json({ message: 'Login Successful', status: 200 });
+        sendTokens(res,accessToken);
+    res.json({ message: 'Login Successful', status: 200 });
 })
 
 const getNewTokens = asyncHandler(async(req,res)=>{
@@ -79,14 +72,32 @@ const getNewTokens = asyncHandler(async(req,res)=>{
 
 })
 const logoutUser = asyncHandler(async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+  
+    if (refreshToken) {
+      // Optional: Remove the token from DB
+      await Token.deleteOne({ token: refreshToken });
+    }
+  
+    // Clear access token
     res.cookie("accessToken", "", {
-      httpOnly: true,       // Prevent access to cookie via JavaScript
-      secure: req.secure || process.env.NODE_ENV === 'production', // Ensure it works in secure contexts (HTTPS)
-      expires: new Date(0), // Set the cookie expiration date to a past date to delete it
-      path: "/",            // Ensure it matches the path where the cookie was set
+      httpOnly: true,
+      secure: req.secure || process.env.NODE_ENV === 'production',
+      expires: new Date(0),
+      path: "/",
     });
+  
+    // Clear refresh token
+    res.cookie("refreshToken", "", {
+      httpOnly: true,
+      secure: req.secure || process.env.NODE_ENV === 'production',
+      expires: new Date(0),
+      path: "/",
+    });
+  
     res.status(200).json({ message: "Logout Successful" });
-});
+  });
+  
 
   
 export {registerUser,loginUser,getNewTokens,logoutUser}

@@ -3,31 +3,34 @@ import React, { useState } from 'react';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isResponse,setIsResponse] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission (page refresh)
+    e.preventDefault(); 
 
     try {
       const response = await fetch("http://localhost:3000/login", {
         method: "POST", 
         headers: {
-          "Content-Type": "application/json", // Important to specify content type
+          "Content-Type": "application/json", 
         },
+        credentials: "include", // 🔥 this is the key
         body: JSON.stringify({
-          username: email, // Use email as username
+          username: email, 
           password,
         }),
       });
+      
 
       if (!response.ok) {
         throw new Error("Login failed");
       }
 
-      const data = await response.json(); // Parse the JSON response
-      console.log(data); // Handle the response data
+      const data = await response.json(); 
+      console.log(data); 
 
     } catch (error) {
-      console.error("Error:", error); // Handle errors
+      console.error("Error:", error); 
     }
   };
 

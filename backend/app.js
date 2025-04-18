@@ -8,11 +8,7 @@ const app = express();
 
 
 // use common middlewares for react
-app.use(cors({
-    methods:['GET', 'PUT', 'POST'],
-    origin: process.env.CORS_URL || "http://localhost:3000",
-
-}))
+app.use(cors());
 app.use(express.json());
 app.use(urlencoded({
     limit:"10kb",

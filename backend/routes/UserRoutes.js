@@ -17,6 +17,6 @@ router.get("/", (req, res) => {
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/refreshToken", authMiddleware, getNewTokens);
-router.post("/logout", logoutUser);
+router.get("/logout", logoutUser);
 
 export default router;

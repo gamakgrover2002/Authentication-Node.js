@@ -8,7 +8,12 @@ const app = express();
 
 
 // use common middlewares for react
-app.use(cors());
+app.use(cors({
+    origin: function(origin, callback) {
+      callback(null, true); // Allow any origin
+    },
+    credentials: true, // Allow credentials (cookies)
+  }));
 app.use(express.json());
 app.use(urlencoded({
     limit:"10kb",

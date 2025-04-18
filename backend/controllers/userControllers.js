@@ -52,7 +52,6 @@ const loginUser = asyncHandler(async(req,res)=>{
     await user.save();
     res.cookie('accessToken', accessToken, {
        httpOnly: true,
-       secure: true,
        maxAge: 3600000,
    }).json({ message: 'Login Successful', status: 200 });
 })

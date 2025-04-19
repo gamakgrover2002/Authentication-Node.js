@@ -2,7 +2,6 @@ import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/Users.js"; 
 
 const cookieOptions = {
-    httpOnly: true,
     secure: true, // Set to true to work with HTTPS
     maxAge: 3600000,
     sameSite: 'strict',

@@ -12,14 +12,21 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    firstName:{
+        type: String,
+        required: true,
+
+    },
+    lastName:{
+        type: String,
+        required: true
+    },
     role:{
         type:String,
         default:"User"
 
     },
-    refershToken :{
-        type:String,
-    }
+    
 }, {
     timestamps: true 
 });
@@ -43,6 +50,8 @@ UserSchema.methods.generateAccessToken = function () {
             data: {
                 username: this.username,
                 role: this.role,
+                firstName: this.firstName,
+                lastName:this.lastName
             },
         },
         process.env.ACCESS_TOKEN_SECRET,

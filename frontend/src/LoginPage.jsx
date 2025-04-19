@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom"
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isResponse,setIsResponse] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault(); 
@@ -14,20 +16,20 @@ function LoginPage() {
         headers: {
           "Content-Type": "application/json", 
         },
-        credentials: "include", // 🔥 this is the key
+        credentials: "include", 
         body: JSON.stringify({
           username: email, 
           password,
         }),
       });
       
-
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error("Login failed");
       }
 
       const data = await response.json(); 
-      console.log(data); 
+      navigate("/user")
+       
 
     } catch (error) {
       console.error("Error:", error); 

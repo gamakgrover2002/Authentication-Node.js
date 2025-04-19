@@ -1,91 +1,83 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/Users.js"; 
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: true, // Set to true to work with HTTPS
+    maxAge: 3600000,
+    sameSite: 'strict',
+};
 
 const registerUser = asyncHandler(async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password,firstName,lastName } = req.body;
 
     const user = await User.findOne({ username });
 
     if (user) {
-        return res.status(400).json({
-            message: "User Already Exists"
-        });
+        return res.status(400).json({ message: "User Already Exists" });
     }
 
-    const newUser = new User({ username, password });
+    const newUser = new User({ username, password,firstName,lastName });
+    await newUser.save();
     const refreshToken = newUser.generateRefreshToken();
     const accessToken = newUser.generateAccessToken();
 
-     newUser.refershToken = refreshToken;
-     await newUser.save();
-     res.cookie('accessToken', accessToken, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 3600000,
-    }).json({ message: 'User Created', status: 200 });
-    
+    res
+        .cookie('accessToken', accessToken, cookieOptions)
+        .cookie('refreshToken', refreshToken, cookieOptions)
+        .json({ message: 'User Created', status: 200 });
 });
 
-const loginUser = asyncHandler(async(req,res)=>{
-    const {username,password} = req.body;
-    const user = await User.findOne({
-        username: username
-    })
-    if(!user){
-       return  res.status(400).json({
-            message:"User does not exsist"
-        })
+const loginUser = asyncHandler(async (req, res) => {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+    if (!user) {
+        return res.status(400).json({ message: "User does not exist" });
     }
+
     const validatePassword = await user.comparePassword(password);
-    if(!validatePassword){
-        return res.status(401).json({
-            message:"Password entered is incorrect"
-        })
-     
-
+    if (!validatePassword) {
+        return res.status(401).json({ message: "Password entered is incorrect" });
     }
+
     const refreshToken = user.generateRefreshToken();
     const accessToken = user.generateAccessToken();
 
-    user.refershToken = refreshToken;
-    await user.save();
-    res.cookie('accessToken', accessToken, {
-       httpOnly: true,
-       maxAge: 3600000,
-   }).json({ message: 'Login Successful', status: 200 });
-})
-
-const getNewTokens = asyncHandler(async(req,res)=>{
-    const user = await User.findOne({
-        username:req.user
-    })
-    if(!user){
-       return res.status(400).json({
-            message:"User Not Found",
-        })
-    }
-    const refreshToken = user.generateRefreshToken();
-    const accessToken = user.generateAccessToken();
-
-    user.refershToken = refreshToken;
-    await user.save();
-    res.cookie('accessToken', accessToken, {
-       httpOnly: true,
-       secure: true,
-       maxAge: 3600000,
-   }).json({ message: 'Login Successful', status: 200 });
-
-})
-const logoutUser = asyncHandler(async (req, res) => {
-    res.cookie("accessToken", "", {
-      httpOnly: true,       // Prevent access to cookie via JavaScript
-      secure: req.secure || process.env.NODE_ENV === 'production', // Ensure it works in secure contexts (HTTPS)
-      expires: new Date(0), // Set the cookie expiration date to a past date to delete it
-      path: "/",            // Ensure it matches the path where the cookie was set
-    });
-    res.status(200).json({ message: "Logout Successful" });
+    res
+        .cookie('accessToken', accessToken, cookieOptions)
+        .cookie('refreshToken', refreshToken, cookieOptions)
+        .json({ message: 'Login Successful', status: 200 });
 });
 
-  
-export {registerUser,loginUser,getNewTokens,logoutUser}
+const getNewTokens = asyncHandler(async (req, res) => {
+    const user = await User.findOne({ username: req.user });
+
+    if (!user) {
+        return res.status(400).json({ message: "User Not Found" });
+    }
+
+    const refreshToken = user.generateRefreshToken();
+    const accessToken = user.generateAccessToken();
+
+    res
+        .cookie('accessToken', accessToken, cookieOptions)
+        .cookie('refreshToken', refreshToken, cookieOptions)
+        .json({ message: 'Tokens Refreshed', status: 200 });
+});
+
+const logoutUser = asyncHandler(async (req, res) => {
+    res
+        .cookie('accessToken', '', {
+            ...cookieOptions,
+            expires: new Date(0),
+        })
+        .cookie('refreshToken', '', {
+            ...cookieOptions,
+            expires: new Date(0),
+        })
+        .status(200)
+        .json({ message: "Logout Successful" });
+});
+
+export { registerUser, loginUser, getNewTokens, logoutUser };

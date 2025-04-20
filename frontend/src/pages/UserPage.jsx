@@ -1,18 +1,57 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 function UserPage() {
+  const [userData, setUserData] = useState(null);
+
   useEffect(() => {
-    const getCookie = (name) => {
-      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-      return match ? match[2] : null;
+    const getData = async () => {
+      const accessToken = Cookies.get('accessToken');
+
+      try {
+        const response = await fetch("http://localhost:3000/", {
+          headers: {
+            "Authorization": `Bearer ${accessToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
     };
 
-    const accessToken = getCookie('accessToken');
-    console.log('Access Token:', accessToken);
+    getData();
   }, []);
 
+  // Log the userData after the component renders
+  useEffect(() => {
+    if (userData) {
+      console.log("UserData After Set:", userData);
+    }
+  }, [userData]);
+
   return (
-    <div>UserPage</div>
+    <div className="user-container">
+      <h1 className="user-heading">Welcome to Your Dashboard</h1>
+
+      {userData ? (
+        <div className="user-card">
+          <h2 className="user-name">{userData.name || 'Unnamed User'}</h2>
+          <p className="user-detail"><strong>Email:</strong> {userData.username || 'Not available'}</p>
+          <p className="user-detail"><strong>Role:</strong> {userData.role || 'N/A'}</p>
+          <p className="user-detail"><strong>First Name:</strong> {userData.firstName || 'Unknown'}</p>
+          <p className="user-detail"><strong>Last Name:</strong> {userData.lastName || 'Unknown'}</p>
+        </div>
+      ) : (
+        <p className="loading-text">Loading user data...</p>
+      )}
+    </div>
   );
 }
 

@@ -426,3 +426,27 @@ info: Database Connected Successfully {"timestamp":"2025-04-20T18:02:59.173Z"}
 info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:03:14.000Z"}
 info: Database Connected Successfully {"timestamp":"2025-04-20T18:03:14.669Z"}
 error: Invalid select: select only takes 1 argument {"timestamp":"2025-04-20T18:03:17.937Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:03:30.031Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:03:30.809Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:08:56.587Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:09:14.646Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:16.386Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:18.069Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:18.267Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:18.475Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:38.486Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:11:41.968Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:12:01.973Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:12:18.880Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:12:19.400Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:12:38.768Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:12:58.770Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-20T18:13:31.042Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:44:31.587Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:44:32.309Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:58:11.193Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:58:12.567Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:58:31.483Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:58:32.073Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:59:19.169Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:59:19.748Z"}

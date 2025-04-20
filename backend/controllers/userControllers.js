@@ -10,6 +10,12 @@ const cookieOptions = {
 const registerUser = asyncHandler(async (req, res) => {
     const { username, password,firstName,lastName } = req.body;
 
+    if(!username || !password || !lastName || !firstName){
+        res.status(400).json({
+            message:"data missing please check input"
+        })
+    }
+
     const user = await User.findOne({ username });
 
     if (user) {
@@ -30,6 +36,11 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     const { username, password } = req.body;
 
+    if(!username || !password  ){
+        res.status(400).json({
+            message:"data missing please check input"
+        })
+    }
     const user = await User.findOne({ username });
     if (!user) {
         return res.status(400).json({ message: "User does not exist" });

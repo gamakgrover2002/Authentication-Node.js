@@ -402,3 +402,27 @@ info: Database Connected Successfully {"timestamp":"2025-04-19T18:56:57.840Z"}
 info: Server is listening on port 3000 {"timestamp":"2025-04-19T19:26:50.526Z"}
 info: Database Connected Successfully {"timestamp":"2025-04-19T19:26:51.065Z"}
 info: Server is listening on port 3000 {"timestamp":"2025-04-19T19:39:13.379Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-19T19:39:14.661Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-19T19:39:15.255Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:21:06.576Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:21:07.360Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:58:30.403Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:58:30.958Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:58:42.995Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:58:43.466Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:59:07.604Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:59:08.336Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:59:11.980Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:59:12.538Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T17:59:14.897Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T17:59:15.384Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:00:52.313Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:00:52.938Z"}
+error: req.status is not a function {"timestamp":"2025-04-20T18:01:00.383Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:01:26.363Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:01:27.141Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:02:57.917Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:02:59.173Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:03:14.000Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:03:14.669Z"}
+error: Invalid select: select only takes 1 argument {"timestamp":"2025-04-20T18:03:17.937Z"}

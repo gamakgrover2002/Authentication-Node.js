@@ -3,20 +3,19 @@ import {
   loginUser,
   registerUser,
   getNewTokens,
-  logoutUser
+  logoutUser,
+  getUser
 } from "../controllers/userControllers.js";
 import authMiddleware from "../middlewares/authToken.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  console.log(req.headers);
-  res.send("Hello");
-});
+
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/refreshToken", authMiddleware, getNewTokens);
 router.get("/logout", logoutUser);
+router.get("/",authMiddleware,getUser);
 
 export default router;

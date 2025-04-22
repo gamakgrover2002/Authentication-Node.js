@@ -1,13 +1,13 @@
-/* Reset some default browser styles */
+/* ===== Base Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body styles */
+/* ===== Body Styling ===== */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: #f4f7fc;
   color: #333;
   line-height: 1.6;
@@ -15,104 +15,140 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 1rem;
 }
 
-/* Main container for forms */
-.container {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+/* ===== Shared Container Styles ===== */
+.container,
+.user-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  margin: 20px;
+  max-width: 500px;
+  padding: 2rem;
+  margin: 0 auto;
 }
 
-/* Heading styles */
-h2 {
+/* ===== Headings ===== */
+h2,
+.user-heading {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 1.5rem;
+  color: #222;
 }
 
-/* Input field styles */
+.user-heading {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== Input Fields ===== */
 input {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-/* Submit button styles */
+input:focus-visible {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/* ===== Buttons ===== */
 button {
   width: 100%;
-  padding: 10px;
+  padding: 0.75rem;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 6px;
+  font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #45a049;
 }
 
-/* Link styles */
+/* ===== Logout Button (Top-Right) ===== */
+.logout-button {
+
+  background-color: #ff4d4f;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  border: none;
+}
+
+.logout-button:hover {
+  background-color: #d9363e;
+}
+
+/* ===== Link Styling ===== */
 a {
   color: #4CAF50;
   text-decoration: none;
+  transition: text-decoration 0.3s;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* Navbar styling */
+/* ===== Navbar ===== */
 nav {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.5rem;
 }
 
 nav a {
-  margin: 0 10px;
-  font-size: 16px;
+  margin: 0 0.75rem;
+  font-size: 1rem;
 }
 
-/* Form spacing */
 form {
   display: flex;
   flex-direction: column;
 }
+
+
 .user-container {
+  position: relative;
   padding: 2rem;
-  font-family: Arial, sans-serif;
   background-color: #f4f6f8;
   min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
-.user-heading {
-  font-size: 2.2rem;
-  color: #222;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.user-card {
-  background-color: #fff;
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 0 auto;
-}
 
 .user-name {
   font-size: 1.5rem;
   color: #1e88e5;
   margin-bottom: 1rem;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 480px) {
+  .container,
+  .user-card {
+    padding: 1.5rem;
+  }
+
+  h2,
+  .user-heading {
+    font-size: 1.5rem;
+  }
+
+  .user-name {
+    font-size: 1.2rem;
+  }
 }

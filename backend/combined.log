@@ -450,3 +450,27 @@ info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:58:31.483Z"}
 info: Database Connected Successfully {"timestamp":"2025-04-20T18:58:32.073Z"}
 info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:59:19.169Z"}
 info: Database Connected Successfully {"timestamp":"2025-04-20T18:59:19.748Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-20T18:59:31.186Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-20T18:59:31.812Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-22T09:03:03.084Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-22T09:03:04.555Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:07:11.878Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:07:31.892Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:07:35.551Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:07:35.554Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-22T09:10:20.623Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-22T09:10:21.250Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:10:26.266Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-22T09:10:57.023Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-22T09:10:57.553Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:11:32.611Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:11:52.616Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:12:23.374Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:12:37.042Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T09:12:37.931Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T11:04:56.890Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T11:05:16.903Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T11:07:17.225Z"}
+error: jwt malformed {"name":"JsonWebTokenError","timestamp":"2025-04-22T11:07:37.227Z"}
+info: Server is listening on port 3000 {"timestamp":"2025-04-22T18:51:19.282Z"}
+info: Database Connected Successfully {"timestamp":"2025-04-22T18:51:20.000Z"}

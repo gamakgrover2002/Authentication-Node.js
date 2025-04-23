@@ -45,8 +45,8 @@ UserSchema.methods.comparePassword = async function (enteredPassword) {
     return isMatch;
 };
 UserSchema.methods.generateAccessToken = function () {
-    console.log('JWT_SECRET:', process.env.ACCESS_TOKEN_SECRET);
-    console.log('JWT_SECRET:', process.env.ACCESS_TOKEN_EXPIRY);
+    console.log('JWT_SECRET: A', process.env.ACCESS_TOKEN_SECRET);
+    console.log('JWT_SECRET_TIME A:', process.env.ACCESS_TOKEN_EXPIRY);
     return jwt.sign(
         {
             data: {
@@ -63,7 +63,7 @@ UserSchema.methods.generateAccessToken = function () {
 
 UserSchema.methods.generateRefreshToken = function () {
     console.log('JWT_SECRET:', process.env.REFRESH_TOKEN_SECRET);
-    console.log('JWT_SECRET:', process.env.REFRESH_TOKEN_EXPIRY);
+    console.log('JWT_SECRET_TIME:', process.env.REFRESH_TOKEN_EXPIRY);
     return jwt.sign(
         {
             data: {

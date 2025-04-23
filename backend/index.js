@@ -10,6 +10,8 @@ const startServer = () => {
             logger.info(`Server is listening on port ${process.env.PORT}`);
         });
         connectDb();
+        console.log("All env keys:", Object.keys(process.env));
+
     } catch (err) {
         logger.error(" Failed to start the server:", err);
         process.exit(1);

@@ -20,7 +20,7 @@ function UserPage() {
       }
 
       try {
-        const response = await fetch("http://localhost:3000/", {
+        const response = await fetch("https://authentication-node-js.onrender.com", {
           headers: {
             "Authorization": `Bearer ${accessToken}`,
           },

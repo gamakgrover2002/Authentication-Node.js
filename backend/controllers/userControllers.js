@@ -2,9 +2,10 @@ import asyncHandler from "../utils/asyncHandler.js";
 import User from "../models/Users.js"; 
 
 const cookieOptions = {
-    secure: true, // Set to true to work with HTTPS
+    secure: true,
     maxAge: 3600000,
-    sameSite: 'strict',
+    sameSite: 'none', // Allow cross-site
+    httpOnly: true,   // Optional but recommended for security
 };
 
 const registerUser = asyncHandler(async (req, res) => {

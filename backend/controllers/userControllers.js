@@ -26,6 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
     await newUser.save();
     const refreshToken = newUser.generateRefreshToken();
     const accessToken = newUser.generateAccessToken();
+    console.log("Registered");
 
     res
         .cookie('accessToken', accessToken, cookieOptions)
@@ -53,7 +54,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const refreshToken = user.generateRefreshToken();
     const accessToken = user.generateAccessToken();
-
+    
+    console.log("Logined");
     res
         .cookie('accessToken', accessToken, cookieOptions)
         .cookie('refreshToken', refreshToken, cookieOptions)

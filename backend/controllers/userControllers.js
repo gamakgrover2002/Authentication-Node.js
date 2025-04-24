@@ -5,7 +5,7 @@ const cookieOptions = {
     secure: true,
     maxAge: 3600000,
     sameSite: 'none', // Allow cross-site
-    httpOnly: true,   // Optional but recommended for security
+    httpOnly: false,   
 };
 
 const registerUser = asyncHandler(async (req, res) => {

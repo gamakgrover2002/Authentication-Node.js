@@ -10,6 +10,8 @@ function UserPage() {
   useEffect(() => {
     const getData = async () => {
       const accessToken = Cookies.get('accessToken');
+      console.log("Access Token:", accessToken);
+
 
       if (!accessToken) {
         setInvalid(true);

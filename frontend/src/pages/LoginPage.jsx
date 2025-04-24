@@ -64,7 +64,7 @@ function LoginPage() {
       </form>
 
       <p>Don't have an account?</p>
-      <button className='link_button' onClick={handleNavigateToSignup}>Go to Signup</button>
+      <a href="#" className='link_button navigate-btn' onClick={handleNavigateToSignup}>Go to Signup</a>
     </div>
   );
 }

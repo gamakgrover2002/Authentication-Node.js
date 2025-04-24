@@ -99,11 +99,13 @@ function SignupPage() {
             required
           />
         </div>
-        <button type="submit">Signup</button>
+        <a href="#" className="link_button signup-btn" onClick={handleSignup}>Signup</a>
       </form>
 
       <p>Already have an account?</p>
-      <button className='link_button' onClick={handleNavigateToLogin}>Go to Login</button>
+      <a href="#" className="link_button navigate-btn" onClick={handleNavigateToLogin}>
+        Go to Login
+      </a>
     </div>
   );
 }

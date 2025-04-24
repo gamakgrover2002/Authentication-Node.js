@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom"
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isResponse,setIsResponse] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {

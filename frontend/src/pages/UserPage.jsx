@@ -1,31 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 function UserPage() {
   const [userData, setUserData] = useState(null);
-  const [invalid, setInvalid] = useState(false); // corrected naming
+  const [invalid, setInvalid] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const accessToken = Cookies.get('accessToken');
-      console.log("Access Token:", accessToken);
-
-
-      if (!accessToken) {
-        setInvalid(true);
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-        return;
-      }
-
       try {
         const response = await fetch("https://authentication-node-js.onrender.com", {
-          headers: {
-            "Authorization": `Bearer ${accessToken}`,
-          },
+          credentials: 'include', // ✅ send cookies with request
         });
 
         if (!response.ok) {
@@ -37,27 +22,29 @@ function UserPage() {
       } catch (error) {
         console.error("Error:", error.message);
         setInvalid(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
     };
 
     getData();
-  }, []);
-
-  useEffect(() => {
-    if (userData) {
-      console.log("UserData After Set:", userData);
-    }
-  }, [userData]);
+  }, [navigate]);
 
   const handleLogout = () => {
-    Cookies.remove('accessToken');
-    Cookies.remove('refreshToken');
-    navigate('/login');
+    // Optionally send logout request to backend to clear HttpOnly cookies
+    fetch("https://authentication-node-js.onrender.com/logout", {
+      method: 'POST',
+      credentials: 'include',
+    }).finally(() => {
+      navigate('/login');
+    });
   };
+
   return (
     <div className="user-container">
       <h1 className="user-heading">Welcome to Your Dashboard</h1>
-  
+
       {userData ? (
         <div className="user-card">
           <p className="user-detail"><strong>Email:</strong> {userData.username || 'Not available'}</p>
@@ -71,8 +58,8 @@ function UserPage() {
       ) : (
         <p className="loading-text">Loading user data...</p>
       )}
-           
     </div>
   );
-}  
+}
+
 export default UserPage;

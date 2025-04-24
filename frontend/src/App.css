@@ -152,3 +152,38 @@ form {
     font-size: 1.2rem;
   }
 }
+.link_button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.link_button.signup-btn {
+  background-color: #007BFF;
+  color: white;
+}
+
+.link_button.signup-btn:hover {
+  background-color: #0056b3;
+}
+
+.link_button.navigate-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.link_button.navigate-btn:hover {
+  background-color: #5a6268;
+}
+
+.link_button:focus {
+  outline: none;
+}

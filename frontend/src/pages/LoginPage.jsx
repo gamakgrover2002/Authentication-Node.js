@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -27,13 +27,15 @@ function LoginPage() {
       }
 
       const data = await response.json(); 
-       console.log("Login");
-      navigate("/user")
-       
-
+      console.log("Login successful");
+      navigate("/user");
     } catch (error) {
       console.error("Error:", error); 
     }
+  };
+
+  const handleNavigateToSignup = () => {
+    navigate("/signup");
   };
 
   return (
@@ -60,6 +62,9 @@ function LoginPage() {
         </div>
         <button type="submit">Login</button>
       </form>
+
+      <p>Don't have an account?</p>
+      <button className='link_button' onClick={handleNavigateToSignup}>Go to Signup</button>
     </div>
   );
 }

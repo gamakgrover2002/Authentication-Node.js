@@ -32,7 +32,7 @@ function SignupPage() {
       });
 
       if (response.status !== 200) {
-        throw new Error("Login failed");
+        throw new Error("Signup failed");
       }
 
       const data = await response.json();
@@ -44,6 +44,10 @@ function SignupPage() {
     }
 
     console.log('Signing up with:', { firstName, lastName, username, password });
+  };
+
+  const handleNavigateToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -97,6 +101,9 @@ function SignupPage() {
         </div>
         <button type="submit">Signup</button>
       </form>
+
+      <p>Already have an account?</p>
+      <button className='link_button' onClick={handleNavigateToLogin}>Go to Login</button>
     </div>
   );
 }

@@ -7,13 +7,13 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 
-// use common middlewares for react
+const cors = require("cors");
+
 app.use(cors({
-    origin: function(origin, callback) {
-      callback(null, true); // Allow any origin
-    },
-    credentials: true, // Allow credentials (cookies)
-  }));
+  origin: "http://localhost:5173", // must match frontend origin
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(urlencoded({
     limit:"10kb",

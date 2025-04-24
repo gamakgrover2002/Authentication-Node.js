@@ -43,7 +43,7 @@ function LoginPage() {
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>
-          <label>Email:</label>
+          <label>Username:</label>
           <input 
             type="text" 
             value={email} 

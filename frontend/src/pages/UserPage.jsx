@@ -31,15 +31,19 @@ function UserPage() {
     getData();
   }, [navigate]);
 
-  const handleLogout = () => {
-    // Optionally send logout request to backend to clear HttpOnly cookies
-    fetch("https://authentication-node-js.onrender.com/logout", {
-      method: 'POST',
-      credentials: 'include',
-    }).finally(() => {
-      navigate('/login');
-    });
+  const handleLogout = async () => {
+    try {
+      await fetch("https://authentication-node-js.onrender.com/logout", {
+        method: 'POST',
+        credentials: 'include',
+      });
+    } catch (err) {
+      console.error("Logout error:", err.message);
+    } finally {
+      window.location.href = '/login'; // hard redirect instead of navigate()
+    }
   };
+  
 
   return (
     <div className="user-container">

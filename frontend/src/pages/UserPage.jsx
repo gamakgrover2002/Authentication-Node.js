@@ -30,7 +30,6 @@ function UserPage() {
 
     getData();
   }, [navigate]);
-
   const handleLogout = async () => {
     try {
       await fetch("https://authentication-node-js.onrender.com/logout", {
@@ -40,7 +39,9 @@ function UserPage() {
     } catch (err) {
       console.error("Logout error:", err.message);
     } finally {
-      window.location.href = '/login'; // hard redirect instead of navigate()
+      localStorage.clear();  
+      sessionStorage.clear(); 
+      window.location.href = '/login';
     }
   };
   

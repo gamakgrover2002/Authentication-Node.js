@@ -6,6 +6,7 @@ const cookieOptions = {
     maxAge: 3600000,
     sameSite: 'none', // Allow cross-site
     httpOnly: true,   
+       path: '/', // ✅ Ensure path matches during clear
 };
 
 const registerUser = asyncHandler(async (req, res) => {

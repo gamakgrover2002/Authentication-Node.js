@@ -11,6 +11,7 @@ function UserPage() {
       try {
         const response = await fetch("https://authentication-node-js.onrender.com", {
           credentials: 'include',
+             cache:'no-store'
         });
 
         if (!response.ok) {

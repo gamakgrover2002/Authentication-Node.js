@@ -6,47 +6,44 @@ function UserPage() {
   const [invalid, setInvalid] = useState(false);
   const navigate = useNavigate();
 
-useEffect(() => {
-  const getData = async () => {
-    try {
-      const response = await fetch("https://authentication-node-js.onrender.com", {
-        credentials: 'include',
-      });
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await fetch("https://authentication-node-js.onrender.com", {
+          credentials: 'include',
+        });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error:", error.message);
+        setInvalid(true);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
+    };
 
-      const data = await response.json();
-      setUserData(data);
-    } catch (error) {
-      console.error("Error:", error.message);
-      setInvalid(true);
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    }
-  };
+    // Handle bfcache restoration
+    const handlePageShow = (event) => {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    };
 
-  // 🔁 Handle bfcache restoration
-  const handlePageShow = (event) => {
-    if (event.persisted) {
-      window.location.reload();
-    }
-  };
-
-  window.addEventListener("pageshow", handlePageShow);
-  getData();
-
-  // Cleanup
-  return () => {
-    window.removeEventListener("pageshow", handlePageShow);
-  };
-}, [navigate]);
-
-
+    window.addEventListener("pageshow", handlePageShow);
     getData();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("pageshow", handlePageShow);
+    };
   }, [navigate]);
+
   const handleLogout = async () => {
     try {
       await fetch("https://authentication-node-js.onrender.com/logout", {
@@ -61,7 +58,6 @@ useEffect(() => {
       window.location.href = '/login';
     }
   };
-  
 
   return (
     <div className="user-container">
@@ -75,13 +71,4 @@ useEffect(() => {
           <p className="user-detail"><strong>Last Name:</strong> {userData.lastName || 'Unknown'}</p>
           <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
-      ) : invalid ? (
-        <p className="loading-text">Invalid session. Redirecting to login...</p>
-      ) : (
-        <p className="loading-text">Loading user data...</p>
-      )}
-    </div>
-  );
-}
-
-export default UserPage;
+      ) : inv

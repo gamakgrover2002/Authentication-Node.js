@@ -28,7 +28,11 @@ function UserPage() {
       }
     };
 
-    // Handle bfcache restoration
+    getData();
+  }, [navigate]);
+
+  // 🔁 Handle bfcache restoration (e.g., when user navigates back to this page)
+  useEffect(() => {
     const handlePageShow = (event) => {
       if (event.persisted) {
         window.location.reload();
@@ -36,13 +40,11 @@ function UserPage() {
     };
 
     window.addEventListener("pageshow", handlePageShow);
-    getData();
 
-    // Cleanup
     return () => {
       window.removeEventListener("pageshow", handlePageShow);
     };
-  }, [navigate]);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -71,4 +73,13 @@ function UserPage() {
           <p className="user-detail"><strong>Last Name:</strong> {userData.lastName || 'Unknown'}</p>
           <button onClick={handleLogout} className="logout-button">Logout</button>
         </div>
-      ) : inv
+      ) : invalid ? (
+        <p className="loading-text">Invalid session. Redirecting to login...</p>
+      ) : (
+        <p className="loading-text">Loading user data...</p>
+      )}
+    </div>
+  );
+}
+
+export default UserPage;

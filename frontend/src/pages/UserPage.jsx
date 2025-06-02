@@ -6,27 +6,44 @@ function UserPage() {
   const [invalid, setInvalid] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch("https://authentication-node-js.onrender.com", {
-          credentials: 'include', // ✅ send cookies with request
-        });
+useEffect(() => {
+  const getData = async () => {
+    try {
+      const response = await fetch("https://authentication-node-js.onrender.com", {
+        credentials: 'include',
+      });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-
-        const data = await response.json();
-        setUserData(data);
-      } catch (error) {
-        console.error("Error:", error.message);
-        setInvalid(true);
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+      if (!response.ok) {
+        throw new Error("Failed to fetch user data");
       }
-    };
+
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error("Error:", error.message);
+      setInvalid(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  };
+
+  getData();
+
+  // 🔁 Prevent bfcache page restore
+  const handlePageShow = (event) => {
+    if (event.persisted) {
+      window.location.reload(); // ensures no stale session is restored
+    }
+  };
+
+  window.addEventListener("pageshow", handlePageShow);
+
+  return () => {
+    window.removeEventListener("pageshow", handlePageShow);
+  };
+}, [navigate]);
+
 
     getData();
   }, [navigate]);

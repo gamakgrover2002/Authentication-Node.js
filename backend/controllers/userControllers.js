@@ -5,7 +5,7 @@ const cookieOptions = {
    httpOnly: true,
   secure: true,  // if you use https
   sameSite: 'Strict',  // or your cookie's sameSite setting
-  path: '/
+  path: '/'
 };
 
 const registerUser = asyncHandler(async (req, res) => {

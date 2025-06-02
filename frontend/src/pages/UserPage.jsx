@@ -28,17 +28,17 @@ useEffect(() => {
     }
   };
 
-  getData();
-
-  // 🔁 Prevent bfcache page restore
+  // 🔁 Handle bfcache restoration
   const handlePageShow = (event) => {
     if (event.persisted) {
-      window.location.reload(); // ensures no stale session is restored
+      window.location.reload();
     }
   };
 
   window.addEventListener("pageshow", handlePageShow);
+  getData();
 
+  // Cleanup
   return () => {
     window.removeEventListener("pageshow", handlePageShow);
   };

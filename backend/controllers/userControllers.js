@@ -4,7 +4,7 @@ import User from "../models/Users.js";
 const cookieOptions = {
    httpOnly: true,
   secure: true,  // if you use https
-  sameSite: 'Strict',  // or your cookie's sameSite setting
+  sameSite: 'none',  // or your cookie's sameSite setting
   path: '/'
 };
 
